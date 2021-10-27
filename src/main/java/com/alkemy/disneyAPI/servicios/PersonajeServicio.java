@@ -35,7 +35,7 @@ public class PersonajeServicio {
     }
     
     @Transactional
-    public Iterable<Object[]> getAll(){
+    public Iterable<Object[]> mostrarTodos(){
         return personajeRepositorio.obtenerTodosLosPersonajes();
     }
     

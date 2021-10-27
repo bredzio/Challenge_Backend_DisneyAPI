@@ -17,10 +17,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-@Controller
-@RequestMapping("/peliculas")
+@RestController
+@RequestMapping("/movies")
 public class PeliculaSerieController {
     
     @Autowired
@@ -39,18 +40,18 @@ public class PeliculaSerieController {
         return peliculaServicio.findById(id);
     }
     
-    @GetMapping(params="nombre")
-    public Iterable<Object[]> findByTitulo(@RequestParam("nombre") String titulo){
+    @GetMapping(params="name")
+    public Iterable<Object[]> findByTitulo(@RequestParam("name") String titulo){
         return peliculaServicio.findByTitulo(titulo);
     }
     
-    @GetMapping(params="orden")
-    public Iterable<Object[]> getByOrder(@RequestParam("orden") String orden){
+    @GetMapping(params="order")
+    public Iterable<Object[]> getByOrder(@RequestParam("order") String orden){
         return peliculaServicio.obtenerPorOrden(orden);
     }
     
-    @GetMapping(value = "", params="generoId")
-    public List<PeliculaSerie> getBygenero(@RequestParam("generoId") Integer generoId){
+    @GetMapping(value = "", params="genreId")
+    public List<PeliculaSerie> getBygenero(@RequestParam("genreId") Integer generoId){
         return generoServicio.obtenerPeliculasPorGenero(generoId);
     }
     
@@ -58,9 +59,9 @@ public class PeliculaSerieController {
     public String eliminar(@PathVariable("id") Integer id){
         try {
             peliculaServicio.eliminar(id);
-            return "Personaje número "+id+" eliminado";
+            return "Pelicula número "+id+" eliminada";
         } catch (Exception e) {
-            return "Personaje número "+id+" no pudo ser eliminado";
+            return "Pelicula número "+id+" no pudo ser eliminada";
         }
     }
     

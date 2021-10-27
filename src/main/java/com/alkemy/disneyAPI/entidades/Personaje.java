@@ -19,7 +19,7 @@ public class Personaje {
     private Integer personajeID;
     private String nombre;
     private String imagen;
-    private String edad;
+    private Integer edad;
     private Integer peso;
     private String historia;
     

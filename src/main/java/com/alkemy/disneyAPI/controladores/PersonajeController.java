@@ -15,18 +15,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-@Controller
-@RequestMapping("/personajes")
+@RestController
+@RequestMapping("/characters")
 public class PersonajeController {
     
     @Autowired
     private PersonajeServicio personajeServicio;
     
     @GetMapping()
-    public Iterable<Object[]> getAll(){
-        return personajeServicio.getAll();
+    public Iterable<Object[]> mostrarTodos(){
+        return personajeServicio.mostrarTodos();
     }
     
     @GetMapping("/{id}")
@@ -34,13 +35,13 @@ public class PersonajeController {
         return personajeServicio.findById(personajeId); 
     }
     
-    @GetMapping(params="nombre")
-    public Iterable<Object[]> findByNombre(@RequestParam("nombre") String nombre){
+    @GetMapping(params="name")
+    public Iterable<Object[]> findByNombre(@RequestParam("name") String nombre){
         return personajeServicio.findByNombre(nombre);
     }
     
-    @GetMapping(params="edad")
-    public Iterable<Object[]> findByEdad(@RequestParam("edad") Integer edad){
+    @GetMapping(params="age")
+    public Iterable<Object[]> findByEdad(@RequestParam("age") Integer edad){
         return personajeServicio.findByEdad(edad);
     }
     
